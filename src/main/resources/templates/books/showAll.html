@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Все книги</title>
+</head>
+<body>
+<dl>
+    <div th:each="book : ${books}">
+        <dt>
+            <a th:href="@{/books/{id}(id=${book.getId()})}"
+               th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">
+            </a>
+        </dt>
+    </div>
+</dl>
+<div>
+    <button type="button" onclick="location.href='books/new'">Добавить книгу</button>
+    <button type="button" onclick="location.href='books/search'">Поиск книги</button>
+    <br/>
+    <button type="button" onclick="location.href='people'">Перейти к списку людей</button>
+</div>
+</body>
+</html>

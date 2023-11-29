@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/books/search}">
+    <label for="query">Введите запрос: </label>
+    <input type="text" name="query" id="query">
+    <input type="submit" value="Найти!">
+</form>
+
+<div th:if="${foundBooks}">
+    <div th:if="${foundBooks.isEmpty()}">
+        <br/>
+        <span th:text="${'Ничего не найдено :('}"></span>
+    </div>
+    <dl>
+        <div th:each="book : ${foundBooks}">
+            <dt>
+                <a th:href="@{/books/{id}(id=${book.getId()})}"
+                   th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></a>
+            </dt>
+            <dt th:unless="${book.getOwner().isPresent()}">
+                <span th:text="${'Книга свободна'}"></span>
+            </dt>
+            <dt th:if="${book.getOwner().isPresent()}">
+                <span th:text="${'Книга сейчас у: '}"></span>
+                <a th:href="@{/people/{id}(id=${book.getOwner().get().getId()})}"
+                   th:text="${'' + book.getOwner().get().getFullName()}"></a>
+            </dt>
+        </div>
+    </dl>
+</div>
+
+<button type="button" onclick="location.href='/books'">Вернуться к списку книг</button>
+
+</body>
+</html>
