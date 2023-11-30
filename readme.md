@@ -15,7 +15,7 @@
 * PersonController 
 * BookController
   
-#### __Методы контроллеров:__ </a>
+#### __Методы контроллеров:__
 
 
 
@@ -70,34 +70,34 @@
 
 ### 3. Веб-представление:
 #### (Нажмите на картинку, чтобы перейти обратно к таблице)
-### <an id="/people"> /people </a>
+### /people <a id="/people"></a>
 [![/people](imagesForReadme/.people.png)](#/controllers)
 
-### <an id="/people/id"> /people/{id} </a>
+### /people/{id} <a id="/people/id"></a>
 [![/people/{id}](imagesForReadme/.people.%7Bid%7D.png)](#/controllers)
 
-### <an id="/people/id/edit"> /people/{id}/edit </a>
+### /people/{id}/edit <a id="/people/id/edit"></a>
 [![.people.{id}.edit.png](imagesForReadme/.people.%7Bid%7D.edit.png)](#/controllers)
 
-### <an id="/people/new"> /people/new </a>
+### /people/new <a id="/people/new"></a>
 [![.people.new.png](imagesForReadme/.people.new.png)](#/controllers)
 
-### <an id="/books"> /books </a>
+### /books <a id="/books"></a>
 [![.books.png](imagesForReadme/.books.png)](#/controllers)
 
-### <an id="/books/id"> /books/{id} </a>
+### /books/{id} <a id="/books/id"></a>
 [![.books.{id}.png](imagesForReadme/.books.%7Bid%7D.png)](#/controllers)
 
-### <an id="/books/id/edit"> /books/{id}/edit </a>
+### /books/{id}/edit <a id="/books/id/edit"></a>
 [![.books.{id}.edit.png](imagesForReadme/.books.%7Bid%7D.edit.png)](#/controllers)
 
-### <an id="/books/new"> /books/new </a>
+### /books/new <a id="/books/new"></a>
 [![.books.new.png](imagesForReadme/.books.new.png)](#/controllers)
 
-### <an id="/books/search"> /books/search </a>
+### /books/search <a id="/books/search"></a>
 [![.books.search.png](imagesForReadme/.books.search.png)](#/controllers)
 
-### <an id="/books/search1"> /books/search с результатами </a>
+### /books/search с результатами <a id="/books/search1"></a>
 [![.books.search1.png](imagesForReadme/.books.search1.png)](#/controllers)
 [Вверх](#anchor)
 
