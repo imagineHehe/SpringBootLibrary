@@ -78,7 +78,7 @@ public class Book {
     public boolean isOverdue() {
         Calendar dateOfOverdue = Calendar.getInstance();
         dateOfOverdue.setTime(dateOfTaking);
-        dateOfOverdue.add(Calendar.MINUTE, 1);
+        dateOfOverdue.add(Calendar.DAY_OF_MONTH, 10);
         return dateOfOverdue.getTime().before(new Date());
     }
 

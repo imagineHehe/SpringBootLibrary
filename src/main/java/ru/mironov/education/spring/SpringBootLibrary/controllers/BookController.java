@@ -25,6 +25,7 @@ public class BookController {
         this.personService = personService;
     }
 
+    //Возвращает страницу со всеми книгами/с книгой по её id
     @GetMapping()
     public String showAll(Model model){
         model.addAttribute("books", bookService.findAll());
@@ -42,37 +43,19 @@ public class BookController {
         }
         return "/books/showUnit";
     }
-    @GetMapping("/search")
-    public String searchPage(){
-        return "/books/search";
-    }
-    @PostMapping("/search")
-    public String makeSearchPage(Model model, @RequestParam("query") String query){
-        model.addAttribute("foundBooks", bookService.findByTitle(query));
-        return "/books/search";
-    }
 
+    //Возвращает страницу с формой для добавления новой книги && Post запрос на добавление книги в БД
     @GetMapping("/new")
     public String newBook(@ModelAttribute("book")Book book){
         return "/books/newBook";
     }
     @PostMapping()
-    public String newBookPost(@ModelAttribute("book") Book book){
-        bookService.save(book);
+    public String newBookPost(@ModelAttribute("book") Book newBook){
+        bookService.save(newBook);
         return "redirect:/books";
     }
 
-    @PatchMapping("/{id}/release")
-    public String releaseBook(@PathVariable("id") int id, HttpServletRequest request){
-        bookService.updateOwner(id, null);
-        return Optional.ofNullable(request.getHeader("Referer")).map(requestUrl -> "redirect:" + requestUrl).orElse("/");
-        //return "redirect:/books/{id}";
-    }
-    @PatchMapping("/{id}/assign")
-    public String assignBook(@PathVariable("id") int id, @ModelAttribute("newOwner") Person newOwner){
-        bookService.updateOwner(id, newOwner);
-        return "redirect:/books/{id}";
-    }
+    //Возвращает страницу с формой для обновления существующей книги && Patch запрос на изменение книги в БД
     @GetMapping("/{id}/edit")
     public String updateBook(@PathVariable("id")int id, Model model){
         model.addAttribute("book", bookService.findOne(id));
@@ -85,10 +68,34 @@ public class BookController {
         return "redirect:/books/{id}";
     }
 
+    //Delete запрос на удаление книги из БД
     @DeleteMapping("{id}")
     public String deleteBook(@PathVariable("id")int id){
         bookService.delete(id);
         return "redirect:/books";
     }
 
+    //Patch запросы на освобождение/назначение нового владельца для книги по её id
+    @PatchMapping("/{id}/release")
+    public String releaseBook(@PathVariable("id") int id, HttpServletRequest request){
+        bookService.updateOwner(id, null);
+        return Optional.ofNullable(request.getHeader("Referer")).map(requestUrl -> "redirect:" + requestUrl).orElse("/");
+        //return "redirect:/books/{id}";
+    }
+    @PatchMapping("/{id}/assign")
+    public String assignBook(@PathVariable("id") int id, @ModelAttribute("newOwner") Person newOwner){
+        bookService.updateOwner(id, newOwner);
+        return "redirect:/books/{id}";
+    }
+
+    //Возвращает страницу поиска && Post запрос на поиск книг, содержащих в названии query
+    @GetMapping("/search")
+    public String searchPage(){
+        return "/books/search";
+    }
+    @PostMapping("/search")
+    public String makeSearchPage(Model model, @RequestParam("query") String query){
+        model.addAttribute("foundBooks", bookService.findByTitle(query));
+        return "/books/search";
+    }
 }

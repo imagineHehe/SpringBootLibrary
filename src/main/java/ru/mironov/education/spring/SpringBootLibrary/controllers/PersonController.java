@@ -22,7 +22,7 @@ public class PersonController {
         this.personService = personService;
         this.personValidator = personValidator;
     }
-
+    //Возвращает страницу со всеми клиентами/с клиентом по его id
     @GetMapping()
     public String showAll(Model model){
         model.addAttribute("people", personService.findAll());
@@ -35,19 +35,23 @@ public class PersonController {
         model.addAttribute("books", person.getBooks());
         return "/people/showUnit";
     }
+
+    //Возвращает страницу с формой для добавления нового клиента && Post запрос на добавление клиента в БД
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person){
         return "/people/newPerson";
     }
     @PostMapping()
-    public String newPersonPost(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
-        personValidator.validate(person, bindingResult);
+    public String newPersonPost(@ModelAttribute("person") @Valid Person newPerson, BindingResult bindingResult){
+        personValidator.validate(newPerson, bindingResult);
         if(bindingResult.hasErrors()){
             return "people/newPerson";
         }
-        personService.save(person);
+        personService.save(newPerson);
         return "redirect:/people";
     }
+
+    //Возвращает страницу с формой для обновления существующего клиента && Patch запрос на изменение данных клиента в БД
     @GetMapping("/{id}/edit")
     public String updatePerson(@PathVariable("id") int id, Model model){
         model.addAttribute("person", personService.findOne(id));
@@ -63,6 +67,8 @@ public class PersonController {
         personService.update(id, person);
         return "redirect:/people/{id}";
     }
+
+    //Delete запрос на удаление клиента из БД
     @DeleteMapping("/{id}")
     public String deletePerson(@PathVariable("id")int id){
         personService.delete(id);
