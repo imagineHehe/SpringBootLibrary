@@ -1,4 +1,5 @@
 package ru.mironov.education.spring.SpringBootLibrary.controllers;
+// package должен содержать в себе только прописные буквы
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class BookController {
     @GetMapping("/{id}")
     public String showUnit(@PathVariable("id")int id, Model model,
                            @ModelAttribute("person") Person person){
+        /**
+         * Когда пишешь код, важно следить, чтобы он хорошо выглядел
+         * Нажми ctrl + alt + L и идея сама проведёт начальное форматирование под общепринятые конвенции
+         */
         Book book = bookService.findOne(id);
         model.addAttribute("book", book);
         if(book.getOwner().isPresent()){
