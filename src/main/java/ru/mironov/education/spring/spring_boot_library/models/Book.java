@@ -1,12 +1,16 @@
-package ru.mironov.education.spring.SpringBootLibrary.models;
+package ru.mironov.education.spring.spring_boot_library.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
+@Data
 @Entity
+@NoArgsConstructor
 @Table(name = "Book")
 public class Book {
     @Id
@@ -27,54 +31,12 @@ public class Book {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfTaking;
 
-    public Book() {
-    }
-
-    public Book(String title, String author, int year, int person_id) {
+    public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
         this.year = year;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public Optional<Person> getOwner() {
-        return Optional.ofNullable(owner);
-    }
-
-    public Date getDateOfTaking() {
-        return dateOfTaking;
-    }
     public boolean isOverdue() {
         Calendar dateOfOverdue = Calendar.getInstance();
         dateOfOverdue.setTime(dateOfTaking);
@@ -86,26 +48,18 @@ public class Book {
         this.dateOfTaking = dateOfTaking;
     }
 
+    public Optional<Person> getOwner() {
+        return Optional.ofNullable(owner);
+    }
+
     public void setOwner(Person owner) {
-        if(this.owner != null){
+        if (this.owner != null) {
             this.owner.getBooks().remove(this);
         }
         this.owner = owner;
-        if(this.owner != null && !this.owner.getBooks().contains(this)){
+        if (this.owner != null && !this.owner.getBooks().contains(this)) {
             dateOfTaking = new Date();
             owner.addBook(this);
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", year=" + year +
-                ", owner=" + owner +
-                ", dateOfTaking=" + dateOfTaking +
-                '}';
     }
 }

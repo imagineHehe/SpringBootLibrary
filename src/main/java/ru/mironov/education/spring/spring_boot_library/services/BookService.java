@@ -1,12 +1,12 @@
-package ru.mironov.education.spring.SpringBootLibrary.services;
+package ru.mironov.education.spring.spring_boot_library.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mironov.education.spring.SpringBootLibrary.models.Book;
-import ru.mironov.education.spring.SpringBootLibrary.models.Person;
-import ru.mironov.education.spring.SpringBootLibrary.repositories.BookRepository;
-import ru.mironov.education.spring.SpringBootLibrary.repositories.PersonRepository;
+import ru.mironov.education.spring.spring_boot_library.models.Book;
+import ru.mironov.education.spring.spring_boot_library.models.Person;
+import ru.mironov.education.spring.spring_boot_library.out.repositories.BookRepository;
+import ru.mironov.education.spring.spring_boot_library.out.repositories.PersonRepository;
 
 
 import java.util.ArrayList;

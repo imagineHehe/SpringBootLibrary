@@ -1,11 +1,11 @@
-package ru.mironov.education.spring.SpringBootLibrary.util;
+package ru.mironov.education.spring.spring_boot_library.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.mironov.education.spring.SpringBootLibrary.models.Person;
-import ru.mironov.education.spring.SpringBootLibrary.services.PersonService;
+import ru.mironov.education.spring.spring_boot_library.models.Person;
+import ru.mironov.education.spring.spring_boot_library.services.PersonService;
 
 
 @Component
