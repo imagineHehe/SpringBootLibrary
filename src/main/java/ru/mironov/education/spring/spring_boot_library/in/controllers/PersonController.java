@@ -1,4 +1,4 @@
-package ru.mironov.education.spring.SpringBootLibrary.controllers;
+package ru.mironov.education.spring.spring_boot_library.in.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.mironov.education.spring.SpringBootLibrary.models.Person;
-import ru.mironov.education.spring.SpringBootLibrary.services.PersonService;
-import ru.mironov.education.spring.SpringBootLibrary.util.PersonValidator;
+import ru.mironov.education.spring.spring_boot_library.models.Person;
+import ru.mironov.education.spring.spring_boot_library.services.PersonService;
+import ru.mironov.education.spring.spring_boot_library.util.PersonValidator;
 
 
 @Controller

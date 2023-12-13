@@ -1,13 +1,27 @@
-package ru.mironov.education.spring.SpringBootLibrary.models;
+package ru.mironov.education.spring.spring_boot_library.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "person")
 public class Person {
     @Id
@@ -32,48 +46,15 @@ public class Person {
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Book> books = new ArrayList<>();
 
-    public Person() {
-    }
     public Person(String full_name, int birthYear) {
         this.fullName = full_name;
         this.birthYear = birthYear;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public int getBirthYear() {
-        return birthYear;
-    }
-
-    public void setBirthYear(int birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    private void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
-    protected void addBook(Book book){
+    protected void addBook(Book book) {
         books.add(book);
-        if(!book.getOwner().isPresent()){
+
+        if (book.getOwner().isEmpty()) {
             book.setOwner(this);
         }
     }
